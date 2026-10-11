@@ -1,6 +1,13 @@
 # whatsapp-agent-kit
 
-Kit para correr agentes sobre WhatsApp, local-first. Piezas:
+Kit para correr agentes sobre WhatsApp, local-first.
+
+> **Aviso**: usa clientes no oficiales de WhatsApp (whatsmeow/Baileys), fuera de
+> los terminos de servicio de Meta. Para el bot usa siempre un numero
+> DESECHABLE — una cuenta automatizada puede ser suspendida. El bridge de
+> lectura esta disenado para minimizar presencia (ver docs/NEVER_SEND.md).
+
+Piezas:
 
 ```
 bridge/       bridge Go (whatsmeow): vincula un numero y vuelca chats/mensajes
