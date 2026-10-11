@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodic WhatsApp index sync (text + media)
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

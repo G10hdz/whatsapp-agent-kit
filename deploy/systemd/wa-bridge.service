@@ -1,0 +1,14 @@
+[Unit]
+Description=WhatsApp Bridge — ingesta a SQLite via whatsmeow (solo lectura)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/projects/whatsapp-agent-kit/bridge
+ExecStart=%h/projects/whatsapp-agent-kit/bridge/whatsapp-bridge
+Restart=on-failure
+RestartSec=10
+Environment=HOME=%h
+
+[Install]
+WantedBy=default.target

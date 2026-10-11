@@ -1,0 +1,48 @@
+name: check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+          cache-dependency-path: bridge/go.sum
+
+      - name: Build Go bridge
+        run: cd bridge && go build ./...
+
+      - name: Compile python modules
+        run: |
+          python3 -m py_compile wa-rag/*.py
+          python3 -m py_compile mcp-server/*.py
+
+      - name: Syntax-check grupo-bot scripts
+        run: |
+          node --check grupo-bot/wa-connect.mjs
+          node --check grupo-bot/smoke-imports.mjs
+
+      - name: wa-rag tests
+        run: |
+          cd wa-rag
+          python3 test_rag.py
+          python3 test_media_index.py
+          python3 test_archive_import.py
+
+      - name: NEVER_SEND guardrail test
+        run: |
+          pip install "mcp[cli]>=1.6.0,<2" "httpx>=0.28.1" "requests>=2.32.3"
+          cd mcp-server
+          python3 test_never_send.py

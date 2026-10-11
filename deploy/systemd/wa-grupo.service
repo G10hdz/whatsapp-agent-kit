@@ -1,0 +1,18 @@
+[Unit]
+Description=Bot de WhatsApp para grupo (numero desechable, Baileys)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/projects/whatsapp-agent-kit/grupo-bot
+# Apunta al node que uses (nvm, system, etc.) — --env-file-if-exists requiere Node >= 20.6
+ExecStart=%h/.nvm/versions/node/v22.22.2/bin/node --env-file-if-exists=.env wa-connect.mjs
+Restart=always
+RestartSec=10
+# Una sola sesion de Baileys por cuenta: dos procesos se expulsan en bucle
+# (conflict/replaced). Si este servicio corre, nadie mas debe levantar
+# wa-connect.mjs, ni aqui ni en otra maquina.
+
+[Install]
+WantedBy=default.target

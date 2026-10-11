@@ -1,0 +1,15 @@
+[Unit]
+Description=Sync WhatsApp text and media indexes (personal + work)
+After=wa-bridge.service network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/whatsapp-agent-kit/wa-rag
+# "-" prefix: un sync que falla no bloquea los siguientes.
+# Indice personal: todos los chats menos el denylist compartido.
+ExecStart=-/usr/bin/env WA_RAG_SOURCE_DB=%h/.local/share/wa/messages.db WA_RAG_INDEX_DB=%h/.local/share/personal-assistant/rag.db WA_RAG_DENY_FILE=%h/.config/wa-scope/never-index.jids python3 rag.py sync
+# Indice de trabajo: solo grupos (WA_RAG_CHATS=groups), mismo denylist.
+ExecStart=-/usr/bin/env WA_RAG_SOURCE_DB=%h/.local/share/wa/messages.db WA_RAG_INDEX_DB=%h/.local/share/wa-rag-work/rag-work.db WA_RAG_CHATS=groups WA_RAG_DENY_FILE=%h/.config/wa-scope/never-index.jids python3 rag.py sync
+# Indice de media personal: captions (qwen3-vl), transcripts (whisper),
+# texto de documentos (pdftotext) en el MISMO indice personal.
+ExecStart=-/usr/bin/env WA_RAG_SOURCE_DB=%h/.local/share/wa/messages.db WA_RAG_INDEX_DB=%h/.local/share/personal-assistant/rag.db WA_RAG_DENY_FILE=%h/.config/wa-scope/never-index.jids %h/projects/whatsapp-agent-kit/wa-rag/.venv/bin/python media_index.py sync

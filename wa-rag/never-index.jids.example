@@ -1,0 +1,23 @@
+# Plantilla del denylist. El archivo real NO va a git: lleva JIDs y nombres de
+# chats personales, y este repo tiene remoto publico.
+#
+# Se despliega a mano en la maquina que corre el indice:
+#   install -m 600 -D never-index.jids ~/.config/wa-scope/never-index.jids
+# y se lee via WA_RAG_DENY_FILE.
+#
+# Que es: los chats que ningun consumidor puede indexar ni consultar, nunca.
+# Fuente de verdad unica de ese limite. Va aparte de los allowlists porque esos
+# difieren por proposito (agent-hq ingiere unos pocos chats de proyecto, el RAG
+# de trabajo cubre todos los grupos) mientras que el limite de privacidad es el
+# mismo para todos. Un JID aqui gana sobre cualquier allowlist, incluso si
+# alguien lo pide por JID explicito. Hay test que lo cubre.
+#
+# Cambiarlo obliga a reconstruir el indice:
+#   rag.py sync --rebuild
+# El denylist entra en la firma guardada en rag_meta, asi que un indice viejo
+# no pasa desapercibido: el sync se niega a continuar.
+#
+# Un JID por linea. "#" comenta. Los JIDs de grupo terminan en @g.us.
+
+# 120363000000000000@g.us   # grupo de familia
+# 5210000000000-0000000000@g.us   # grupo de amigos

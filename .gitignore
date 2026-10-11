@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+.env
+.env.*
+!.env.example
+auth-*/
+**/auth-*/
+.venv/
+**/venv/
+# Bridge: binarios y store/ se compilan/crean en el destino, no en git
+bridge/whatsapp-bridge
+bridge/whatsapp-client
+bridge/store/
+__pycache__/
+*.pyc
+# Denylist real: lleva JIDs y nombres de chats personales. Solo el .example.
+wa-rag/never-index.jids

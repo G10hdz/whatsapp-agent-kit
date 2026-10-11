@@ -1,0 +1,15 @@
+{
+  "name": "wa-grupo-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Bot de grupo de WhatsApp (Baileys). Numero DESECHABLE. Fase 1: primer hola.",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env wa-connect.mjs"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "baileys": "^7.0.0-rc14",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
