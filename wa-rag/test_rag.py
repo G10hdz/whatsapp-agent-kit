@@ -80,6 +80,22 @@ def _insert_msg(
     return cur.lastrowid
 
 
+class DefaultPathsTest(unittest.TestCase):
+    def test_default_source_db_lives_under_bridge(self):
+        d = os.path.dirname(
+            os.path.dirname(os.path.abspath(rag._DEFAULT_SOURCE_DB))
+        )
+        self.assertTrue(os.path.isdir(d), f"{d} no existe")
+        self.assertEqual(os.path.basename(d), "bridge")
+
+    def test_default_index_db_lives_under_bridge(self):
+        d = os.path.dirname(
+            os.path.dirname(os.path.abspath(rag._DEFAULT_INDEX_DB))
+        )
+        self.assertTrue(os.path.isdir(d), f"{d} no existe")
+        self.assertEqual(os.path.basename(d), "bridge")
+
+
 class RagTestBase(unittest.TestCase):
     def setUp(self) -> None:
         self.tmp = tempfile.TemporaryDirectory()
