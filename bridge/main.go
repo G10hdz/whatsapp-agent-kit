@@ -480,7 +480,7 @@ func restAddr(port int) string {
 
 // Start a REST API server to expose the WhatsApp client functionality
 func startRESTServer(client *whatsmeow.Client, messageStore *MessageStore, port int) {
-	// Sending endpoint intentionally removed as a never-send guardrail; see ../NEVER_SEND.md.
+	// Sending endpoint intentionally removed as a never-send guardrail; see ../docs/NEVER_SEND.md.
 
 	// Handler for downloading media
 	http.HandleFunc("/api/download", func(w http.ResponseWriter, r *http.Request) {
