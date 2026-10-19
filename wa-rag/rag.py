@@ -31,8 +31,8 @@ from typing import Any, Iterable, Optional
 
 # --- Config (env-overridable, except OLLAMA_EMBED_URL which is strict) ---
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_DEFAULT_SOURCE_DB = os.path.join(_HERE, "..", "whatsapp-bridge", "store", "messages.db")
-_DEFAULT_INDEX_DB = os.path.join(_HERE, "..", "whatsapp-bridge", "store", "rag.db")
+_DEFAULT_SOURCE_DB = os.path.join(_HERE, "..", "bridge", "store", "messages.db")
+_DEFAULT_INDEX_DB = os.path.join(_HERE, "..", "bridge", "store", "rag.db")
 
 SOURCE_DB = os.environ.get("WA_RAG_SOURCE_DB") or _DEFAULT_SOURCE_DB
 INDEX_DB = os.environ.get("WA_RAG_INDEX_DB") or _DEFAULT_INDEX_DB
