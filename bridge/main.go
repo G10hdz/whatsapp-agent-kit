@@ -472,6 +472,10 @@ func extractDirectPathFromURL(url string) string {
 	return "/" + parts[1]
 }
 
+func restAddr(port int) string {
+	return fmt.Sprintf(":%d", port)
+}
+
 // Start a REST API server to expose the WhatsApp client functionality
 func startRESTServer(client *whatsmeow.Client, messageStore *MessageStore, port int) {
 	// Sending endpoint intentionally removed as a never-send guardrail; see ../NEVER_SEND.md.
@@ -528,7 +532,7 @@ func startRESTServer(client *whatsmeow.Client, messageStore *MessageStore, port 
 	})
 
 	// Start the server
-	serverAddr := fmt.Sprintf(":%d", port)
+	serverAddr := restAddr(port)
 	fmt.Printf("Starting REST API server on %s...\n", serverAddr)
 
 	// Run server in a goroutine so it doesn't block
