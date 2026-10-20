@@ -7,7 +7,7 @@ faster-whisper, text layer via pdftotext) and indexes it into rag.db next to
 the text index, in the same 768-dim embedding space.
 
 Privacy: same rules as rag.py. The chat allowlist/denylist applies BEFORE any
-download — media from denied chats is never fetched. Everything runs on
+download: media from denied chats is never fetched. Everything runs on
 loopback or local models; no content leaves the machine.
 
 Usage:

@@ -58,9 +58,9 @@ CHATS = os.environ.get("WA_RAG_CHATS", "").strip()
 EXCLUDE_CHATS = os.environ.get("WA_RAG_EXCLUDE_CHATS", "").strip()
 # Denylist compartido: chats que ningun consumidor puede indexar, nunca. Es una
 # fuente de verdad aparte del allowlist porque los allowlists difieren por
-# proposito (agent-hq usa 2 chats de proyecto, el RAG usa 71 grupos) pero el
-# limite de privacidad es el mismo para todos. Un JID aqui gana sobre cualquier
-# allowlist. Un archivo por linea, "#" comenta.
+# proposito (cada consumidor puede mantener el suyo) pero el limite de
+# privacidad es el mismo para todos. Un JID aqui gana sobre cualquier
+# allowlist. Un JID por linea, "#" comenta.
 DENY_FILE = os.environ.get("WA_RAG_DENY_FILE", "").strip()
 
 _LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
@@ -128,7 +128,7 @@ def embed_batch(texts: list[str], model: str = EMBED_MODEL) -> list[list[float]]
 
 
 def _fake_embedding(text: str) -> list[float]:
-    """Deterministic embedding from sha256 — for tests only, never production.
+    """Deterministic embedding from sha256: for tests only, never production.
 
     Hashes produce stable buckets so identical/related text clusters; semantic
     quality is intentionally weak but adequate for retrieval-mechanics tests.
