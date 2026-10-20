@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 880" role="img" aria-labelledby="wak-en-t wak-en-d">
+<title id="wak-en-t">How a WhatsApp message reaches your agent</title>
+<desc id="wak-en-d">Data flow: WhatsApp reaches the bridge, which stores messages in messages.db. wa-rag optionally indexes into rag.db with embeddings from Ollama on loopback. mcp-server reads both databases, downloads media from the bridge on 127.0.0.1:8080 and exposes 10 read-only tools to your agent over stdio. No arrow goes back to WhatsApp.</desc>
+<defs>
+<marker id="arr-light" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="9" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,4 L0,8 z" fill="#4f5d75"/></marker>
+</defs>
+<rect x="0" y="0" width="560" height="880" fill="#ffffff"/>
+<rect x="20" y="102" width="520" height="580" rx="10" fill="none" stroke="#8a93a6" stroke-width="1.4" stroke-dasharray="9,6"/>
+<path d="M230,86 L230,118" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<path d="M230,206 L230,224" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<path d="M150,312 L150,332" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<path d="M250,388 L390,388" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-start="url(#arr-light)" marker-end="url(#arr-light)"/>
+<path d="M150,436 L150,454" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<path d="M90,272 L44,272 Q36,272 36,280 L36,618 Q36,626 44,626 L72,626" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<path d="M150,558 L150,578" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<path d="M370,166 L516,166 Q524,166 524,174 L524,618 Q524,626 516,626 L388,626" stroke="#4f5d75" stroke-width="1.6" fill="none" stroke-dasharray="6,5" marker-end="url(#arr-light)"/>
+<path d="M230,666 L230,708" stroke="#4f5d75" stroke-width="1.6" fill="none" marker-end="url(#arr-light)"/>
+<rect x="120" y="14" width="220" height="72" rx="8" fill="rgba(45,49,66,0.04)" stroke="rgba(45,49,66,0.35)" stroke-width="1.6"/>
+<text x="230.0" y="50" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">WhatsApp</text>
+<text x="230.0" y="74" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">your number</text>
+<rect x="90" y="126" width="280" height="80" rx="8" fill="#ffffff" stroke="#2d3142" stroke-width="1.6"/>
+<text x="230.0" y="162" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">bridge</text>
+<text x="230.0" y="186" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">Go + whatsmeow · read-only</text>
+<rect x="90" y="232" width="280" height="80" rx="8" fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="1.6"/>
+<text x="230.0" y="268" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">messages.db</text>
+<text x="230.0" y="292" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">SQLite</text>
+<rect x="50" y="340" width="200" height="96" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.45)" stroke-width="1.6" stroke-dasharray="6,4"/>
+<text x="150.0" y="376" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">wa-rag</text>
+<text x="150.0" y="400" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">FTS5 + embeddings</text>
+<text x="150.0" y="424" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle" font-style="italic">optional</text>
+<rect x="396" y="340" width="110" height="96" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.45)" stroke-width="1.6" stroke-dasharray="6,4"/>
+<text x="451.0" y="376" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">Ollama</text>
+<text x="451.0" y="400" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">loopback</text>
+<text x="451.0" y="424" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle" font-style="italic">optional</text>
+<rect x="50" y="462" width="200" height="96" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.45)" stroke-width="1.6" stroke-dasharray="6,4"/>
+<text x="150.0" y="498" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">rag.db</text>
+<text x="150.0" y="522" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">SQLite</text>
+<text x="150.0" y="546" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle" font-style="italic">optional</text>
+<rect x="80" y="586" width="300" height="80" rx="8" fill="#fdf0e8" stroke="#c14e1f" stroke-width="1.6"/>
+<text x="230.0" y="622" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">mcp-server</text>
+<text x="230.0" y="646" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">10 read-only tools</text>
+<rect x="60" y="716" width="340" height="92" rx="8" fill="rgba(45,49,66,0.04)" stroke="rgba(45,49,66,0.35)" stroke-width="1.6"/>
+<text x="230.0" y="752" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="24" font-weight="600" fill="#2d3142" text-anchor="middle">Your agent</text>
+<text x="230.0" y="776" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">Claude Code, Codex,</text>
+<text x="230.0" y="800" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">Cursor or a local model</text>
+<rect x="34" y="94" width="134" height="24" rx="3" fill="#ffffff"/>
+<text x="46" y="112" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="start">Your machine</text>
+<rect x="268" y="356" width="110" height="22" rx="3" fill="#ffffff"/>
+<text x="323" y="372" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">embeddings</text>
+<rect x="366" y="478" width="152" height="56" rx="3" fill="#ffffff"/>
+<text x="512" y="500" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="end">media</text>
+<text x="512" y="524" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="end">127.0.0.1:8080</text>
+<rect x="242" y="686" width="120" height="24" rx="3" fill="#ffffff"/>
+<text x="302" y="706" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">MCP (stdio)</text>
+<text x="230" y="832" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">With a cloud model,</text>
+<text x="230" y="856" font-family="-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="400" fill="#4f5d75" text-anchor="middle">whatever it queries leaves your machine.</text>
+</svg>
