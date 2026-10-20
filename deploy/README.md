@@ -1,25 +1,25 @@
 # Despliegue en Linux
 
-Layout canonico en el servidor:
+Layout canónico en el servidor:
 
 ```
 ~/projects/whatsapp-agent-kit/
-├── grupo-bot/                           # bot de grupo (Baileys, numero desechable)
+├── grupo-bot/                           # bot de grupo (Baileys, número desechable)
 │   ├── wa-connect.mjs
-│   └── auth-*/                          # sesion Baileys — jamas compartir con el bridge
-└── bridge/                              # bridge whatsmeow (numero real)
+│   └── auth-*/                          # sesión Baileys: jamás compartir con el bridge
+└── bridge/                              # bridge whatsmeow (número real)
     ├── main.go  go.mod  go.sum
     ├── whatsapp-bridge                  # binario: compilar EN el servidor con CGO_ENABLED=1
-    └── store/                           # whatsapp.db (sesion) + messages.db (ingesta)
+    └── store/                           # whatsapp.db (sesión) + messages.db (ingesta)
 
-~/.local/share/wa/                       # indireccion estable para consumidores
+~/.local/share/wa/                       # indirección estable para consumidores
 ├── messages.db -> ~/projects/whatsapp-agent-kit/bridge/store/messages.db
 └── whatsapp.db -> ~/projects/whatsapp-agent-kit/bridge/store/whatsapp.db
 ```
 
 Los consumidores (mcp-server, wa-rag, otros agentes) leen
 `~/.local/share/wa/messages.db`, no el store directo. Si el bridge se mueve,
-se repunta el symlink y ningun consumidor cambia. Una ruta de datos vieja no
+se repunta el symlink y ningún consumidor cambia. Una ruta de datos vieja no
 falla: devuelve una copia congelada sin error en los logs.
 
 ## Units
@@ -30,7 +30,7 @@ falla: devuelve una copia congelada sin error en los logs.
 | `wa-bridge.service` (+ `wa-bridge.service.d/restart.conf`) | `./whatsapp-bridge` | `~/projects/whatsapp-agent-kit/bridge` |
 | `wa-rag-sync.service` + `.timer` | `rag.py sync` + `media_index.py sync` cada 30 min | `~/projects/whatsapp-agent-kit/wa-rag` |
 
-Instalacion completa en `REQUIREMENTS.md` (seccion deploy).
+Instalación completa en `REQUIREMENTS.md` (sección deploy).
 
 ## Compilar el bridge
 
@@ -46,12 +46,14 @@ y muere al abrir `whatsapp.db` ("go-sqlite3 requires cgo to work").
 
 ## Reglas
 
-- Una sola sesion por cuenta: `wa-bridge` (numero real) y `wa-grupo`
+- Una sola sesión por cuenta: `wa-bridge` (número real) y `wa-grupo`
   (desechable) corren solo en el servidor, nunca en la laptop a la vez. Dos
-  procesos sobre el mismo store/auth expulsan la sesion en bucle.
-- El bridge nunca envia: el codigo de envio esta amputado del fuente
+  procesos sobre el mismo store/auth expulsan la sesión en bucle.
+- El bridge nunca envía: el código de envío está amputado del fuente
   (`docs/NEVER_SEND.md`). Si aparece `/api/send` o `client.SendMessage` en
-  `main.go`, es regresion.
-- Sesion muerta (401/logout remoto) = `whatsmeow_device` vacio en
+  `main.go`, es regresión.
+- La API HTTP del bridge escucha solo en 127.0.0.1. Para usarla desde otra
+  máquina hace falta un túnel ssh (`ssh -L 8080:127.0.0.1:8080 servidor`).
+- Sesión muerta (401/logout remoto) = `whatsmeow_device` vacío en
   `store/whatsapp.db`: el bridge pide QR al arrancar. Re-parear con el QR del
   journal, o copiar un store sano.
