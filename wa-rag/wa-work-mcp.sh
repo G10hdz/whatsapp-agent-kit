@@ -1,6 +1,7 @@
 #!/bin/bash
-# Lanzador del MCP acotado a grupos de trabajo. Este es el que se registra en
-# agentes de terceros; main.py (acceso completo) no se registra en ninguno.
+# Lanzador del MCP acotado a grupos de trabajo. Registra este en agentes de
+# terceros o en la nube; main.py da acceso completo al historial y esta
+# pensado para un modelo local.
 #
 # El alcance vive aqui y no en el agente: si estas variables faltan o cambian,
 # main_work.py se niega a arrancar en vez de servir de mas.

@@ -1,7 +1,7 @@
-// wa-connect.mjs — bot de grupo. NÚMERO DESECHABLE.
-// Objetivo Fase 1: "primer hola". Nada de Notion todavía.
+// wa-connect.mjs: bot de grupo. NÚMERO DESECHABLE.
+// Objetivo Fase 1: "primer hola".
 // npm i baileys @hapi/boom qrcode-terminal  (declarado en package.json)
-// Node 17+. Correr: WA_PHONE=52155... npm start
+// Node 22.9+. Correr: WA_PHONE=52155... npm start
 //
 // OJO PROD: useMultiFileAuthState es solo para prototipo (IO-heavy).
 // Para 24/7 migra las creds a Redis/DB. Para <20 miembros esto basta.
@@ -93,7 +93,7 @@ async function start() {
           // Pausa entre grupos: mandar en ráfaga desde un cliente no oficial dispara baneos.
           if (GRUPO_JIDS.length > 1) await new Promise(r => setTimeout(r, 3000))
         }
-        console.log('— sigo vivo escuchando.')
+        console.log('Sigo vivo escuchando.')
       }
     }
 

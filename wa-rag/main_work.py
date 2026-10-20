@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""MCP server acotado a grupos de trabajo. Este es el unico servidor que se
-registra en agentes de terceros (Claude Code, Codex, etc).
+"""MCP server acotado a grupos de trabajo. Es el que se registra en agentes
+de terceros o en la nube; main.py da acceso completo al historial y esta
+pensado para un modelo local.
 
 Diferencia con main.py, que es para uso local sobre el numero personal:
 

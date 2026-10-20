@@ -9,9 +9,9 @@ Two phases so the heavy extraction runs wherever the files live:
 
 extract walks a directory, classifies by extension, pulls searchable text
 with local models (whisper for audio, pdftotext for docs, Ollama vision for
-images) and writes JSONL — no rag.db needed on that machine. ingest runs on
-Pop, embeds each caption into the shared rag_media index; message_id is
-arch:<sha256> so reruns dedupe naturally.
+images) and writes JSONL, no rag.db needed on that machine. ingest runs on
+the machine that holds rag.db, embedding each caption into the shared
+rag_media index; message_id is arch:<sha256> so reruns dedupe naturally.
 
 Everything local: whisper + pdftotext + loopback Ollama. Nothing leaves the
 machine.

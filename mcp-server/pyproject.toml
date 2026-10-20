@@ -1,8 +1,7 @@
 [project]
 name = "whatsapp-mcp-server"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "Servidor MCP de solo lectura sobre tu historial de WhatsApp"
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.28.1",

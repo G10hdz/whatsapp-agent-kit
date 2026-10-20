@@ -6,11 +6,11 @@
 # y se lee via WA_RAG_DENY_FILE.
 #
 # Que es: los chats que ningun consumidor puede indexar ni consultar, nunca.
-# Fuente de verdad unica de ese limite. Va aparte de los allowlists porque esos
-# difieren por proposito (agent-hq ingiere unos pocos chats de proyecto, el RAG
-# de trabajo cubre todos los grupos) mientras que el limite de privacidad es el
-# mismo para todos. Un JID aqui gana sobre cualquier allowlist, incluso si
-# alguien lo pide por JID explicito. Hay test que lo cubre.
+# Fuente de verdad unica de ese limite. Va aparte de los allowlists porque
+# esos difieren por proposito (cada consumidor puede tener su propia
+# allowlist) mientras que el limite de privacidad es el mismo para todos. Un
+# JID aqui gana sobre cualquier allowlist, incluso si alguien lo pide por JID
+# explicito. Hay test que lo cubre.
 #
 # Cambiarlo obliga a reconstruir el indice:
 #   rag.py sync --rebuild

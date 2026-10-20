@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""RAG evaluation harness — privacy-safe.
+"""RAG evaluation harness: privacy-safe.
 
 Reads queries from $WA_RAG_EVAL_QUERIES (default ~/.cache/rag-eval/queries.txt),
 one per line. Blank lines and lines starting with '#' are skipped.

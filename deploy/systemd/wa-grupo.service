@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=%h/projects/whatsapp-agent-kit/grupo-bot
-# Apunta al node que uses (nvm, system, etc.) — --env-file-if-exists requiere Node >= 20.6
+# Apunta al node que uses (nvm, system, etc.). --env-file-if-exists requiere Node >= 22.9
 ExecStart=%h/.nvm/versions/node/v22.22.2/bin/node --env-file-if-exists=.env wa-connect.mjs
 Restart=always
 RestartSec=10

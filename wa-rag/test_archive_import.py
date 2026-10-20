@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unit tests for archive_import.py — stdlib only.
+"""Unit tests for archive_import.py: stdlib only.
 
 Extract/ingest run against a tempdir with injected extract results and the
 fake embedder (`OLLAMA_EMBED_URL=fake:`). No whisper, no Ollama, no PII.

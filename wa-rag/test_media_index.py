@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unit tests for media_index.py — stdlib only.
+"""Unit tests for media_index.py: stdlib only.
 
 Same fixtures as test_rag.py: synthetic messages.db, fake embedder
 (`OLLAMA_EMBED_URL=fake:`), injected download/extract functions. No network,

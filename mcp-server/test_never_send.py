@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NEVER_SEND guardrail test — behavioral, not source-text.
+"""NEVER_SEND guardrail test: behavioral, not source-text.
 
 Imports main.py and inspects the tools actually registered on the FastMCP
 server. Asserts the registered set is exactly the documented read-only set

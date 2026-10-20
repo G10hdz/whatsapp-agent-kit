@@ -1,10 +1,10 @@
 from typing import List, Dict, Any, Optional
 from mcp.server.fastmcp import FastMCP
 # GUARDRAIL NEVER-SEND (ver docs/NEVER_SEND.md): este asistente corre sobre un
-# numero personal y lee mensajes privados. NUNCA debe poder enviar. Los imports
-# de send_message / send_file / send_audio_message se removieron a proposito: aunque
-# sigan existiendo en whatsapp.py, aqui no se importan ni se registran como tool MCP,
-# asi que el agente no puede alcanzarlos. No re-agregar sin revision de arquitectura.
+# numero personal y lee mensajes privados. NUNCA debe poder enviar. Las
+# funciones de envio ya no existen en whatsapp.py: se removieron a proposito
+# para que ningun import ni tool MCP pueda alcanzarlas. No re-agregar sin
+# revision de arquitectura.
 from whatsapp import (
     search_contacts as whatsapp_search_contacts,
     list_messages as whatsapp_list_messages,

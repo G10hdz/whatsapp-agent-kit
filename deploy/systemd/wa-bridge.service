@@ -1,5 +1,5 @@
 [Unit]
-Description=WhatsApp Bridge — ingesta a SQLite via whatsmeow (solo lectura)
+Description=WhatsApp Bridge: ingesta a SQLite via whatsmeow (solo lectura)
 After=network-online.target
 
 [Service]

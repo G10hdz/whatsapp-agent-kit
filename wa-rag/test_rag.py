@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unit tests for rag.py — stdlib only.
+"""Unit tests for rag.py: stdlib only.
 
 Uses a synthetic messages.db (matching the Go bridge schema) and the fake
 embedder (`OLLAMA_EMBED_URL=fake:`). No network, no real WhatsApp data, no
@@ -535,7 +535,7 @@ class TestWorkServerGuardrails(unittest.TestCase):
     def test_refuses_to_start_without_allowlist(self) -> None:
         # Solo se salta si falta el paquete mcp (no esta en todos los entornos).
         # Cualquier otro import roto es un despliegue incompleto, no un skip:
-        # asi se colo un redact.py que faltaba en Pop.
+        # asi se colo una vez un redact.py que faltaba en el servidor.
         if importlib.util.find_spec("mcp") is None:
             self.skipTest("paquete mcp no instalado en este entorno")
         import main_work
