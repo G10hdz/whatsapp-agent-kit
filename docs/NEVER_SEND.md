@@ -1,10 +1,10 @@
-# Guardrail NEVER-SEND — asistente personal
+# Guardrail NEVER-SEND: asistente personal
 
-> El asistente corre sobre un numero **personal** y lee mensajes privados.
-> Invariante no negociable: **NUNCA envia nada.** No es que el modelo "decida
-> no enviar" — la capacidad no debe existir en el codigo.
+> El asistente corre sobre un número **personal** y lee mensajes privados.
+> Invariante no negociable: **NUNCA envía nada.** No es que el modelo "decida
+> no enviar": la capacidad no debe existir en el código.
 
-## Que se removio (capa MCP — la que ve el agente)
+## Qué se removió (capa MCP, la que ve el agente)
 
 En `mcp-server/main.py` se eliminaron:
 
@@ -17,13 +17,13 @@ get_last_interaction, get_message_context, search_messages_semantic,
 download_media.
 
 `download_media` se conserva: descarga a disco media **recibida**, es
-lectura/retrieval, no envio.
+lectura/retrieval, no envío.
 
-## Como verificar el guardrail
+## Cómo verificar el guardrail
 
 ```sh
 cd mcp-server
-python3 test_never_send.py   # importa main.py y afirma el set exacto de tools
+uv run python test_never_send.py   # importa main.py y afirma el set exacto de tools
 ```
 
 El test corre en CI (`check` workflow): importa `main.py` y falla si el set de
@@ -31,12 +31,12 @@ tools registradas difiere del set read-only documentado.
 
 ## Guardrail estructural en las tres capas
 
-No es solo cosmetico del MCP: la capacidad de envio esta amputada en cada capa.
+No es solo cosmético del MCP: la capacidad de envío está amputada en cada capa.
 
 - `bridge/main.go`: eliminados `/api/send`, `sendWhatsAppMessage`,
   `SendMessageRequest/Response` y TODA llamada a `client.SendMessage`.
-  Recepcion/`StoreMessage`/ingestion intactas. Si reaparece alguna de esas
-  cadenas en `main.go`, es regresion:
+  Recepción/`StoreMessage`/ingesta intactas. La API HTTP escucha solo en
+  127.0.0.1. Si reaparece alguna de esas cadenas en `main.go`, es regresión:
 
   ```sh
   grep -rnE "SendMessage|/api/send|sendWhatsAppMessage" bridge/main.go   # = 0
@@ -46,16 +46,18 @@ No es solo cosmetico del MCP: la capacidad de envio esta amputada en cada capa.
 - `mcp-server/whatsapp.py`: eliminadas `send_message`, `send_file`,
   `send_audio_message`. `download_media` (retrieval de media recibida)
   conservado.
+- `mcp-server/audio.py`: eliminado completo; convertía audio a Opus para
+  mandar notas de voz.
 
-- Base del server: `lharries/whatsapp-mcp` — bridge en Go (whatsmeow) +
-  servidor MCP en Python. Cumple *SQLite local + MCP + local-first*.
+- Base del server: `lharries/whatsapp-mcp` (bridge en Go con whatsmeow y
+  servidor MCP en Python). Cumple *SQLite local + MCP + local-first*.
 
 ## Invariantes que faltan configurar en un deploy nuevo
 
 - authState del bridge en su propio directorio (`store/whatsapp.db`), separado
-  del auth del bot de grupo (`grupo-bot/auth-*`). Una sola sesion por cuenta:
+  del auth del bot de grupo (`grupo-bot/auth-*`). Una sola sesión por cuenta:
   dos procesos sobre el mismo store se expulsan en bucle.
 - Cliente MCP apuntando a modelo **local** (Ollama en loopback) para todo lo
   que toque contenido de mensajes.
-- Auditoria adversarial pendiente: verificar que ninguna dep de whatsmeow ni
-  import residual reintroduce una ruta de envio.
+- Auditoría adversarial pendiente: verificar que ninguna dep de whatsmeow ni
+  import residual reintroduce una ruta de envío.
