@@ -8,11 +8,13 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"reflect"
+	"strconv"
 	"strings"
 	"syscall"
 	"time"
@@ -473,7 +475,7 @@ func extractDirectPathFromURL(url string) string {
 }
 
 func restAddr(port int) string {
-	return fmt.Sprintf(":%d", port)
+	return net.JoinHostPort("127.0.0.1", strconv.Itoa(port))
 }
 
 // Start a REST API server to expose the WhatsApp client functionality
